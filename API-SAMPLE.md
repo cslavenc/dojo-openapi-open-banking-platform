@@ -3,6 +3,8 @@
 This is a possible API interpretation of `PROPOSAL.md`. It serves as a sample. Parts or the entire API can be used to
 implement the openapi specification.
 
+## Endpoints
+
 Account Information Service (AIS)
 GET /accounts/{accountId}: Retrieve account details.
 GET /accounts/{accountId}/balances: Get current account balances.
@@ -64,3 +66,120 @@ Accessibility and Inclusion
 GET /financial-literacy/resources: Access financial literacy resources.
 GET /accessibility/features: Learn about accessibility features.
 POST /feedback/submission: Submit feedback or report issues.
+
+## Data Transfer Objects
+
+Account Information Service (AIS) DTOs
+AccountDetailsDTO
+accountId: UUID
+accountHolderName: String
+accountType: String
+balance: Double
+currency: String
+lastUpdated: LocalDateTime
+
+TransactionDTO
+transactionId: UUID
+amount: Double
+currency: String
+transactionDate: LocalDateTime
+description: String
+StatementDTO
+statementId: UUID
+startDate: LocalDate
+endDate: LocalDate
+totalAmount: Double
+currency: String
+transactions: List<TransactionDTO>
+
+Payment Initiation Service (PIS) DTOs
+PaymentRequestDTO
+paymentId: UUID
+amount: Double
+currency: String
+recipient: String
+description: String
+PaymentResponseDTO
+paymentId: UUID
+status: String
+message: String
+transactionId: UUID
+
+Financial Management Tools DTOs
+BudgetDTO
+budgetId: UUID
+name: String
+monthlyIncome: Double
+monthlyExpenses: Map<String, Double>
+savingsGoal: Double
+startDate: LocalDate
+endDate: LocalDate
+SavingsGoalDTO
+goalId: UUID
+name: String
+targetAmount: Double
+startDate: LocalDate
+endDate: LocalDate
+progress: Double
+
+Personal Finance Management (PFM) DTOs
+ExpenseLogDTO
+expenseId: UUID
+amount: Double
+category: String
+date: LocalDate
+description: String
+TaxEstimationDTO
+taxableIncome: Double
+deductions: Double
+taxLiability: Double
+
+Credit and Lending Services DTOs
+LoanApplicationDTO
+applicationId: UUID
+applicantName: String
+loanAmount: Double
+interestRate: Double
+term: Integer
+purpose: String
+
+MortgageCalculationDTO
+propertyValue: Double
+downPayment: Double
+interestRate: Double
+term: Integer
+monthlyPayment: Double
+Utility and Bill Pay Services DTOs
+
+BillPaymentDTO
+billId: UUID
+amount: Double
+dueDate: LocalDate
+paymentStatus: String
+Shopping and Rewards Programs DTOs
+
+RewardPointsDTO
+userId: UUID
+earnedPoints: Integer
+redeemedPoints: Integer
+totalPoints: Integer
+Security and Fraud Protection DTOs
+
+IdentityVerificationDTO
+userId: UUID
+firstName: String
+lastName: String
+email: String
+phoneNumber: String
+SecurityAlertDTO
+alertId: UUID
+type: String
+description: String
+timestamp: LocalDateTime
+
+Accessibility and Inclusion DTOs
+FinancialLiteracyResourceDTO
+resourceId: UUID
+title: String
+url: String
+description: String
