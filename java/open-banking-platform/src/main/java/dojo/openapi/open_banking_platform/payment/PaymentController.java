@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * TODO : implement methods that return (static) data to the frontend
+ * Feel free to modify the skeleton code below as you see fit
+ */
 @RestController
 public class PaymentController implements PaymentsApi {
     @Override
