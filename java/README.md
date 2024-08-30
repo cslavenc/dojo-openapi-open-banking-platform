@@ -1,6 +1,7 @@
 # Getting started
 
-The `solution` folder contains an example implementation of the API which returns static data.
+The `solution` folder contains an example implementation of the API which returns static data. The exercise code
+contains a skeleton of REST controller code. Feel free to modify the skeleton code as you see fit.
 
 ## Hints
 
