@@ -11,6 +11,7 @@ paths:
     get:
       summary: Retrieve account details
       description: Get information about a specific account
+      operationId: getAccountDetails
       parameters:
         - in: path
           name: accountId
@@ -29,6 +30,7 @@ paths:
     put:
       summary: Update account details
       description: Modify existing account information
+      operationId: updateAccountDetails
       parameters:
         - in: path
           name: accountId
@@ -51,6 +53,7 @@ paths:
     delete:
       summary: Close or delete an account
       description: Permanently remove an account
+      operationId: deleteAccount
       parameters:
         - in: path
           name: accountId
@@ -68,6 +71,7 @@ paths:
     get:
       summary: Get current account balances
       description: Retrieve the current balance of an account
+      operationId: getAccountBalances
       parameters:
         - in: path
           name: accountId
@@ -87,6 +91,7 @@ paths:
     get:
       summary: Fetch transaction history
       description: Retrieve a list of transactions associated with an account
+      operationId: getAccountTransactions
       parameters:
         - in: path
           name: accountId
@@ -108,6 +113,7 @@ paths:
     get:
       summary: Access account statements
       description: Retrieve a statement for a specific account
+      operationId: getAccountStatement
       parameters:
         - in: path
           name: accountId
@@ -127,6 +133,7 @@ paths:
     post:
       summary: Create a new payment
       description: Initiate a payment transaction
+      operationId: createPayment
       requestBody:
         required: true
         content:
@@ -143,6 +150,7 @@ paths:
     get:
       summary: Retrieve payment details
       description: Get information about a specific payment
+      operationId: getPaymentDetails
       parameters:
         - in: path
           name: paymentId
@@ -161,6 +169,7 @@ paths:
     put:
       summary: Update payment status or details
       description: Modify an existing payment
+      operationId: updatePaymentStatus
       parameters:
         - in: path
           name: paymentId
@@ -183,6 +192,7 @@ paths:
     delete:
       summary: Cancel a payment
       description: Terminate an ongoing payment
+      operationId: cancelPayment
       parameters:
         - in: path
           name: paymentId
@@ -200,6 +210,7 @@ paths:
     get:
       summary: View payment history
       description: Retrieve a list of all payments made
+      operationId: getPaymentHistory
       responses:
         "200":
           description: Successful response
@@ -214,6 +225,7 @@ paths:
     post:
       summary: Set up a new budget
       description: Create a new budget
+      operationId: createBudget
       requestBody:
         required: true
         content:
@@ -230,6 +242,7 @@ paths:
     get:
       summary: Retrieve budget details
       description: Get information about a specific budget
+      operationId: getBudgetDetails
       parameters:
         - in: path
           name: budgetId
@@ -248,6 +261,7 @@ paths:
     put:
       summary: Update budget settings
       description: Modify an existing budget
+      operationId: updateBudgetSettings
       parameters:
         - in: path
           name: budgetId
@@ -270,6 +284,7 @@ paths:
     delete:
       summary: Delete a budget
       description: Remove an existing budget
+      operationId: deleteBudget
       parameters:
         - in: path
           name: budgetId
@@ -287,6 +302,7 @@ paths:
     post:
       summary: Establish a savings goal
       description: Create a new savings goal
+      operationId: createSavingsGoal
       requestBody:
         required: true
         content:
@@ -303,6 +319,7 @@ paths:
     get:
       summary: View savings goal details
       description: Get information about a specific savings goal
+      operationId: getSavingsGoalDetails
       parameters:
         - in: path
           name: goalId
@@ -321,6 +338,7 @@ paths:
     put:
       summary: Modify savings goal parameters
       description: Update an existing savings goal
+      operationId: updateSavingsGoal
       parameters:
         - in: path
           name: goalId
@@ -343,6 +361,7 @@ paths:
     delete:
       summary: Remove a savings goal
       description: Terminate an existing savings goal
+      operationId: deleteSavingsGoal
       parameters:
         - in: path
           name: goalId
