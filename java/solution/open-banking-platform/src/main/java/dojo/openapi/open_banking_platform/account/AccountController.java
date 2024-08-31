@@ -6,6 +6,7 @@ import dojo.openapi.open_banking_platform.model.BalanceDTO;
 import dojo.openapi.open_banking_platform.model.StatementDTO;
 import dojo.openapi.open_banking_platform.model.TransactionDTO;
 import org.apache.commons.lang3.NotImplementedException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,17 +17,12 @@ import java.util.UUID;
 public class AccountController implements AccountsApi {
 
     @Override
-    public ResponseEntity<Void> deleteAccount(UUID accountId) {
-        throw new NotImplementedException("Method not implemented");
+    public ResponseEntity<AccountDetailsDTO> getAccountDetails(UUID accountId) {
+        return new ResponseEntity<>(AccountData.defaultAccountDetails(), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<BalanceDTO> getAccountBalances(UUID accountId) {
-        throw new NotImplementedException("Method not implemented");
-    }
-
-    @Override
-    public ResponseEntity<AccountDetailsDTO> getAccountDetails(UUID accountId) {
         throw new NotImplementedException("Method not implemented");
     }
 
@@ -42,6 +38,11 @@ public class AccountController implements AccountsApi {
 
     @Override
     public ResponseEntity<Void> updateAccountDetails(UUID accountId, AccountDetailsDTO accountDetailsDTO) {
+        throw new NotImplementedException("Method not implemented");
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteAccount(UUID accountId) {
         throw new NotImplementedException("Method not implemented");
     }
 }
