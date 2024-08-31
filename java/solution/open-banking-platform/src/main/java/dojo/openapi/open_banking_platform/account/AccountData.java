@@ -1,6 +1,7 @@
 package dojo.openapi.open_banking_platform.account;
 
 import dojo.openapi.open_banking_platform.model.AccountDetailsDTO;
+import dojo.openapi.open_banking_platform.model.BalanceDTO;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -31,6 +32,12 @@ public class AccountData {
                 .balance(BigDecimal.valueOf(balance))
                 .currency(currency)
                 .lastUpdated(lastUpdated);
+    }
+
+    public static BalanceDTO defaultBalance() {
+        return new BalanceDTO()
+                .balance(BigDecimal.valueOf(balance))
+                .currency(currency);
     }
 
 }

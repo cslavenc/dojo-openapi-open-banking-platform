@@ -23,7 +23,7 @@ public class AccountController implements AccountsApi {
 
     @Override
     public ResponseEntity<BalanceDTO> getAccountBalances(UUID accountId) {
-        throw new NotImplementedException("Method not implemented");
+        return new ResponseEntity<>(AccountData.defaultBalance(), HttpStatus.OK);
     }
 
     @Override
