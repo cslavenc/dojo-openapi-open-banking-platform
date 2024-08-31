@@ -15,6 +15,7 @@
 	<description>OpenAPI Coding Dojo for Spring Boot</description>
 	<properties>
 		<java.version>21</java.version>
+		<lombok.version>1.18.34</lombok.version>
 		<org.springdoc.version>2.2.0</org.springdoc.version>
 		<io.springfox.version>3.0.0</io.springfox.version>
 		<io.swagger.version>1.6.8</io.swagger.version>
@@ -31,6 +32,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<optional>true</optional> <!-- remove unused annotations, lombok itself is still mandatory -->
+			<scope>provided</scope>
+		</dependency>
+
 
 		<!-- OPENAPI dependencies -->
 		<!-- swagger ui with spring boot 3-->
