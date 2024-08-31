@@ -126,6 +126,11 @@
 								<useBeanValidation>true</useBeanValidation>
 								<skipDefaultInterface>true</skipDefaultInterface>
 								<delegatePattern>false</delegatePattern>
+								<!--suppress UnresolvedMavenProperty -->
+								<additionalModelTypeAnnotations>@lombok.Builder @lombok.Data @lombok.AllArgsConstructor @lombok.RequiredArgsConstructor</additionalModelTypeAnnotations>
+								<!-- suppress generating these constructors because DTOs are annotated with lombok already -->
+								<generatedConstructorWithAllArgs>false</generatedConstructorWithAllArgs>
+								<generatedConstructorWithRequiredArgs>false</generatedConstructorWithRequiredArgs>
 							</configOptions>
 							<generateSupportingFiles>false</generateSupportingFiles>
 
