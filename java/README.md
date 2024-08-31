@@ -6,5 +6,7 @@ contains a skeleton of REST controller code. Feel free to modify the skeleton co
 ## Hints
 
 - [Swagger UI](http://localhost:8080/swagger-ui/index.html)
+- for lombok, enable annotation processing in IntelliJ: `CTRL+ALT+S` > `CTRL+F` > search for "annotation processing" >
+  check enable
 - in Spring Boot, go to the `target` folder and open all subfolder in the `openapi` and `src` directory. Right-click on
   the `java` folder and mark it as a generated sources root to enable short imports in regular files.
