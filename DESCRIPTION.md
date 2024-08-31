@@ -1,4 +1,4 @@
-# Proposal
+# Description
 
 Alpine Banking AG, a visionary leader in the financial industry, envisions a future where banking is not just about
 transactions but a holistic experience that empowers individuals and businesses to thrive financially. To realize this
