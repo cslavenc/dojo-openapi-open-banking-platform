@@ -16,28 +16,29 @@ import java.util.UUID;
  */
 @RestController
 public class PaymentController implements PaymentsApi {
+
     @Override
-    public ResponseEntity<List<PaymentResponseDTO>> paymentsHistoryGet() {
+    public ResponseEntity<Void> cancelPayment(UUID paymentId) {
         throw new NotImplementedException("Method not implemented");
     }
 
     @Override
-    public ResponseEntity<Void> paymentsInitiatePost(PaymentRequestDTO paymentRequestDTO) {
+    public ResponseEntity<Void> createPayment(PaymentRequestDTO paymentRequestDTO) {
         throw new NotImplementedException("Method not implemented");
     }
 
     @Override
-    public ResponseEntity<Void> paymentsPaymentIdDelete(UUID paymentId) {
+    public ResponseEntity<PaymentResponseDTO> getPaymentDetails(UUID paymentId) {
         throw new NotImplementedException("Method not implemented");
     }
 
     @Override
-    public ResponseEntity<PaymentResponseDTO> paymentsPaymentIdGet(UUID paymentId) {
+    public ResponseEntity<List<PaymentResponseDTO>> getPaymentHistory() {
         throw new NotImplementedException("Method not implemented");
     }
 
     @Override
-    public ResponseEntity<Void> paymentsPaymentIdPut(UUID paymentId, PaymentRequestDTO paymentRequestDTO) {
+    public ResponseEntity<Void> updatePaymentStatus(UUID paymentId, PaymentRequestDTO paymentRequestDTO) {
         throw new NotImplementedException("Method not implemented");
     }
 }

@@ -18,33 +18,34 @@ import java.util.UUID;
  */
 @RestController
 public class AccountController implements AccountsApi {
+
     @Override
-    public ResponseEntity<BalanceDTO> accountsAccountIdBalancesGet(UUID accountId) {
+    public ResponseEntity<Void> deleteAccount(UUID accountId) {
         throw new NotImplementedException("Method not implemented");
     }
 
     @Override
-    public ResponseEntity<Void> accountsAccountIdDelete(UUID accountId) {
+    public ResponseEntity<BalanceDTO> getAccountBalances(UUID accountId) {
         throw new NotImplementedException("Method not implemented");
     }
 
     @Override
-    public ResponseEntity<AccountDetailsDTO> accountsAccountIdGet(UUID accountId) {
+    public ResponseEntity<AccountDetailsDTO> getAccountDetails(UUID accountId) {
         throw new NotImplementedException("Method not implemented");
     }
 
     @Override
-    public ResponseEntity<Void> accountsAccountIdPut(UUID accountId, AccountDetailsDTO accountDetailsDTO) {
+    public ResponseEntity<StatementDTO> getAccountStatement(UUID accountId) {
         throw new NotImplementedException("Method not implemented");
     }
 
     @Override
-    public ResponseEntity<StatementDTO> accountsAccountIdStatementsGet(UUID accountId) {
+    public ResponseEntity<List<TransactionDTO>> getAccountTransactions(UUID accountId) {
         throw new NotImplementedException("Method not implemented");
     }
 
     @Override
-    public ResponseEntity<List<TransactionDTO>> accountsAccountIdTransactionsGet(UUID accountId) {
+    public ResponseEntity<Void> updateAccountDetails(UUID accountId, AccountDetailsDTO accountDetailsDTO) {
         throw new NotImplementedException("Method not implemented");
     }
 }

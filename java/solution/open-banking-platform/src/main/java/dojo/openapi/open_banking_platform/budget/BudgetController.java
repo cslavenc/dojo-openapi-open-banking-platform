@@ -10,23 +10,24 @@ import java.util.UUID;
 
 @RestController
 public class BudgetController implements BudgetsApi {
+    
     @Override
-    public ResponseEntity<Void> budgetsBudgetIdDelete(UUID budgetId) {
+    public ResponseEntity<Void> createBudget(BudgetDTO budgetDTO) {
         throw new NotImplementedException("Method not implemented");
     }
 
     @Override
-    public ResponseEntity<BudgetDTO> budgetsBudgetIdGet(UUID budgetId) {
+    public ResponseEntity<Void> deleteBudget(UUID budgetId) {
         throw new NotImplementedException("Method not implemented");
     }
 
     @Override
-    public ResponseEntity<Void> budgetsBudgetIdPut(UUID budgetId, BudgetDTO budgetDTO) {
+    public ResponseEntity<BudgetDTO> getBudgetDetails(UUID budgetId) {
         throw new NotImplementedException("Method not implemented");
     }
 
     @Override
-    public ResponseEntity<Void> budgetsCreatePost(BudgetDTO budgetDTO) {
+    public ResponseEntity<Void> updateBudgetSettings(UUID budgetId, BudgetDTO budgetDTO) {
         throw new NotImplementedException("Method not implemented");
     }
 }
