@@ -28,21 +28,21 @@ public class AccountController implements AccountsApi {
 
     @Override
     public ResponseEntity<StatementDTO> getAccountStatement(UUID accountId) {
-        throw new NotImplementedException("Method not implemented");
+        return new ResponseEntity<>(AccountData.defaultStatement(), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<List<TransactionDTO>> getAccountTransactions(UUID accountId) {
-        throw new NotImplementedException("Method not implemented");
+        return new ResponseEntity<>(AccountData.defaultTransactions(), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Void> updateAccountDetails(UUID accountId, AccountDetailsDTO accountDetailsDTO) {
-        throw new NotImplementedException("Method not implemented");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Void> deleteAccount(UUID accountId) {
-        throw new NotImplementedException("Method not implemented");
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

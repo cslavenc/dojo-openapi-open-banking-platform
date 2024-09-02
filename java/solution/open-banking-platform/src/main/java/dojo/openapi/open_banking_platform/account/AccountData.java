@@ -2,9 +2,13 @@ package dojo.openapi.open_banking_platform.account;
 
 import dojo.openapi.open_banking_platform.model.AccountDetailsDTO;
 import dojo.openapi.open_banking_platform.model.BalanceDTO;
+import dojo.openapi.open_banking_platform.model.StatementDTO;
+import dojo.openapi.open_banking_platform.model.TransactionDTO;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -38,6 +42,26 @@ public class AccountData {
         return new BalanceDTO()
                 .balance(BigDecimal.valueOf(balance))
                 .currency(currency);
+    }
+
+    public static StatementDTO defaultStatement() {
+        return new StatementDTO()
+                .statementId(accountId)
+                .currency(currency)
+                .totalAmount(BigDecimal.valueOf(balance))
+                .startDate(LocalDate.now())
+                .endDate(LocalDate.now().plusDays(1));
+    }
+
+    public static List<TransactionDTO> defaultTransactions() {
+        return List.of(new TransactionDTO[]{
+                new TransactionDTO()
+                        .transactionId(accountId)
+                        .amount(BigDecimal.valueOf(balance))
+                        .currency(currency)
+                        .description(description)
+                        .transactionDate(createdAt)
+        });
     }
 
 }
