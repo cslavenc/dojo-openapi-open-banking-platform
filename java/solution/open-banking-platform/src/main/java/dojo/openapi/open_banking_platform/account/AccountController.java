@@ -5,7 +5,6 @@ import dojo.openapi.open_banking_platform.model.AccountDetailsDTO;
 import dojo.openapi.open_banking_platform.model.BalanceDTO;
 import dojo.openapi.open_banking_platform.model.StatementDTO;
 import dojo.openapi.open_banking_platform.model.TransactionDTO;
-import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,8 +36,8 @@ public class AccountController implements AccountsApi {
     }
 
     @Override
-    public ResponseEntity<Void> updateAccountDetails(UUID accountId, AccountDetailsDTO accountDetailsDTO) {
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<AccountDetailsDTO> updateAccountDetails(UUID accountId, AccountDetailsDTO accountDetailsDTO) {
+        return new ResponseEntity<>(AccountData.defaultAccountDetails(), HttpStatus.OK);
     }
 
     @Override
