@@ -18,3 +18,5 @@ The examples and solutions are implemented for java, dotnet and python. Try the 
 - c++
 - rust
 - go
+
+Contributions are always welcome!
