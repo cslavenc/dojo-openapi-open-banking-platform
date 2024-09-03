@@ -16,22 +16,22 @@ import java.util.UUID;
 public class SavingsGoalController implements SavingsGoalsApi {
 
     @Override
-    public ResponseEntity<Void> createSavingsGoal(SavingsGoalDTO savingsGoalDTO) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Void> deleteSavingsGoal(UUID goalId) {
-        return null;
-    }
-
-    @Override
     public ResponseEntity<SavingsGoalDTO> getSavingsGoalDetails(UUID goalId) {
         return null;
     }
 
     @Override
+    public ResponseEntity<Void> createSavingsGoal(SavingsGoalDTO savingsGoalDTO) {
+        return null;
+    }
+
+    @Override
     public ResponseEntity<Void> updateSavingsGoal(UUID goalId, SavingsGoalDTO savingsGoalDTO) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteSavingsGoal(UUID goalId) {
         return null;
     }
 }
