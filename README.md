@@ -14,6 +14,7 @@ and entity relationship diagram as a help to visualize the description.
 
 The examples and solutions are implemented for java, dotnet and python. Try the same on your own for:
 
+- nodejs
 - c++
 - rust
 - go
