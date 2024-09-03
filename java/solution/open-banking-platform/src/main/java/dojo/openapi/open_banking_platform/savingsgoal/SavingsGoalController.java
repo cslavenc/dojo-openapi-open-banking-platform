@@ -13,12 +13,12 @@ public class SavingsGoalController implements SavingsGoalsApi {
 
     @Override
     public ResponseEntity<SavingsGoalDTO> getSavingsGoalDetails(UUID goalId) {
-        return new ResponseEntity<>(new SavingsGoalDTO(), HttpStatus.OK);
+        return new ResponseEntity<>(SavingsGoalData.defaultSavingsGoal(), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<SavingsGoalDTO> createSavingsGoal(SavingsGoalDTO savingsGoalDTO) {
-        return new ResponseEntity<>(savingsGoalDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(SavingsGoalData.defaultSavingsGoal(), HttpStatus.CREATED);
     }
 
     @Override
