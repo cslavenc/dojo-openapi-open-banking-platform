@@ -22,11 +22,9 @@ public class AccountData {
     private static final String accountType = "PERSONAL";
     private static final double balance = 8080.25;
     private static final String currency = "CHF";
-    private static final boolean active = true;
     private static final String description = "personal account";
     private static final OffsetDateTime lastUpdated = OffsetDateTime.now();
     private static final OffsetDateTime createdAt = OffsetDateTime.now();
-    private static final OffsetDateTime updatedAt = OffsetDateTime.now();
 
     public static AccountDetailsDTO defaultAccountDetails() {
         return new AccountDetailsDTO()
