@@ -14,7 +14,6 @@ public class SavingsGoalData {
     private static final LocalDate startDate = LocalDate.of(2020, 1, 1);
     private static final LocalDate endDate = LocalDate.of(2020, 12, 31);
 
-
     public static SavingsGoalDTO defaultSavingsGoal() {
         return new SavingsGoalDTO()
                 .goalId(goalId)
