@@ -24,6 +24,7 @@ paragraphs may be worked on too.
 - [java openapi generator walkthrough](https://www.baeldung.com/java-openapi-generator-server)
 - [csharp generator](https://openapi-generator.tech/docs/generators/csharp/)
   - [example usage of the CLI generator](https://openapi-generator.tech/docs/usage#examples)
+- [python generator](https://marcomuellner.github.io/openapi-python-generator/)
 
 ## Further Challenges
 
