@@ -1,0 +1,937 @@
+openapi: 3.1.0
+info:
+  title: Open Banking Platform API
+  version: 1.0.0
+  description: API for managing accounts, payments, budgets, and savings goals
+servers:
+  - url: https://api.financialservices.com
+
+paths:
+  /accounts/{accountId}:
+    get:
+      summary: Retrieve account details
+      description: Get information about a specific account
+      operationId: getAccountDetails
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountDetailsDTO"
+
+    put:
+      summary: Update account details
+      description: Modify existing account information
+      operationId: updateAccountDetails
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountDetailsDTO"
+      responses:
+        "200":
+          description: Successful update
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountDetailsDTO"
+        "400":
+          description: Invalid request data
+
+    delete:
+      summary: Close or delete an account
+      description: Permanently remove an account
+      operationId: deleteAccount
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Account deleted successfully
+        "404":
+          description: Account not found
+
+  /accounts/{accountId}/balances:
+    get:
+      summary: Get current account balances
+      description: Retrieve the current balance of an account
+      operationId: getAccountBalances
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BalanceDTO"
+
+  /accounts/{accountId}/transactions:
+    get:
+      summary: Fetch transaction history
+      description: Retrieve a list of transactions associated with an account
+      operationId: getAccountTransactions
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TransactionDTO"
+
+  /accounts/{accountId}/statements:
+    get:
+      summary: Access account statements
+      description: Retrieve a statement for a specific account
+      operationId: getAccountStatement
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatementDTO"
+
+  /payments/initiate:
+    post:
+      summary: Create a new payment
+      description: Initiate a payment transaction
+      operationId: createPayment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymentRequestDTO"
+      responses:
+        "201":
+          description: Payment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentResponseDTO"
+        "400":
+          description: Invalid request data
+
+  /payments/{paymentId}:
+    get:
+      summary: Retrieve payment details
+      description: Get information about a specific payment
+      operationId: getPaymentDetails
+      parameters:
+        - in: path
+          name: paymentId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentResponseDTO"
+
+    put:
+      summary: Update payment status or details
+      description: Modify an existing payment
+      operationId: updatePaymentStatus
+      parameters:
+        - in: path
+          name: paymentId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymentRequestDTO"
+      responses:
+        "200":
+          description: Payment updated successfully
+        "400":
+          description: Invalid request data
+
+    delete:
+      summary: Cancel a payment
+      description: Terminate an ongoing payment
+      operationId: cancelPayment
+      parameters:
+        - in: path
+          name: paymentId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Payment cancelled successfully
+        "404":
+          description: Payment not found
+
+  /payments/history:
+    get:
+      summary: View payment history
+      description: Retrieve a list of all payments made
+      operationId: getPaymentHistory
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PaymentResponseDTO"
+
+  /budgets/create:
+    post:
+      summary: Set up a new budget
+      description: Create a new budget
+      operationId: createBudget
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BudgetDTO"
+      responses:
+        "201":
+          description: Budget created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BudgetDTO"
+        "400":
+          description: Invalid request data
+
+  /budgets/{budgetId}:
+    get:
+      summary: Retrieve budget details
+      description: Get information about a specific budget
+      operationId: getBudgetDetails
+      parameters:
+        - in: path
+          name: budgetId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BudgetDTO"
+
+    put:
+      summary: Update budget settings
+      description: Modify an existing budget
+      operationId: updateBudgetSettings
+      parameters:
+        - in: path
+          name: budgetId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BudgetDTO"
+      responses:
+        "200":
+          description: Budget updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BudgetDTO"
+        "400":
+          description: Invalid request data
+
+    delete:
+      summary: Delete a budget
+      description: Remove an existing budget
+      operationId: deleteBudget
+      parameters:
+        - in: path
+          name: budgetId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Budget deleted successfully
+        "404":
+          description: Budget not found
+
+  /savings-goals/create:
+    post:
+      summary: Establish a savings goal
+      description: Create a new savings goal
+      operationId: createSavingsGoal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SavingsGoalDTO"
+      responses:
+        "201":
+          description: Savings goal created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SavingsGoalDTO"
+        "400":
+          description: Invalid request data
+
+  /savings-goals/{goalId}:
+    get:
+      summary: View savings goal details
+      description: Get information about a specific savings goal
+      operationId: getSavingsGoalDetails
+      parameters:
+        - in: path
+          name: goalId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SavingsGoalDTO"
+
+    put:
+      summary: Modify savings goal parameters
+      description: Update an existing savings goal
+      operationId: updateSavingsGoal
+      parameters:
+        - in: path
+          name: goalId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SavingsGoalDTO"
+      responses:
+        "200":
+          description: Savings goal updated successfully
+        "400":
+          description: Invalid request data
+
+    delete:
+      summary: Remove a savings goal
+      description: Terminate an existing savings goal
+      operationId: deleteSavingsGoal
+      parameters:
+        - in: path
+          name: goalId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Savings goal removed successfully
+        "404":
+          description: Savings goal not found
+
+components:
+  schemas:
+    # Account Information Services DTOs
+    AccountDetailsDTO:
+      type: object
+      properties:
+        accountId:
+          type: string
+          format: uuid
+        accountHolderName:
+          type: string
+          description: The name of the account holder
+          example: "John Doe"
+        accountType:
+          type: string
+          description: Type of account (e.g. checking, savings)
+          example: "checking"
+        balance:
+          type: number
+          format: decimal
+          description: Current account balance
+          example: 1000.50
+        currency:
+          type: string
+          description: Currency of the account balance
+          example: "USD"
+        lastUpdated:
+          type: string
+          format: date-time
+          description: Timestamp when account details were last updated
+      required:
+        - accountId
+        - accountHolderName
+        - accountType
+        - balance
+        - currency
+        - lastUpdated
+
+    BalanceDTO:
+      type: object
+      required:
+        - balance
+        - currency
+      properties:
+        balance:
+          type: number
+          format: decimal
+          description: Current account balance
+          example: 1000.50
+        currency:
+          type: string
+          description: Currency of the account balance
+          example: "USD"
+
+    TransactionDTO:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          format: uuid
+        amount:
+          type: number
+          format: decimal
+          description: Transaction amount
+          example: 50.25
+        currency:
+          type: string
+          description: Currency of the transaction
+          example: "USD"
+        transactionDate:
+          type: string
+          format: date-time
+          description: Date of the transaction
+          example: "2023-07-25T14:30:00Z"
+        description:
+          type: string
+          description: Brief description of the transaction
+          example: "Grocery shopping"
+      required:
+        - transactionId
+        - amount
+        - currency
+        - transactionDate
+        - description
+
+    StatementDTO:
+      type: object
+      properties:
+        statementId:
+          type: string
+          format: uuid
+        startDate:
+          type: string
+          format: date
+          description: Start date of the statement period
+          example: "2023-07-01"
+        endDate:
+          type: string
+          format: date
+          description: End date of the statement period
+          example: "2023-07-31"
+        totalAmount:
+          type: number
+          format: decimal
+          description: Total amount of all transactions in the statement
+          example: 1500.75
+        currency:
+          type: string
+          description: Currency of the statement
+          example: "USD"
+      required:
+        - statementId
+        - startDate
+        - endDate
+        - totalAmount
+        - currency
+        - transactions
+
+    # Payment Initiation Services DTOs
+    PaymentRequestDTO:
+      type: object
+      properties:
+        paymentId:
+          type: string
+          format: uuid
+          description: Unique identifier for the payment request
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        amount:
+          type: number
+          format: double
+          description: Amount of the payment
+          example: 100.00
+        currency:
+          type: string
+          description: Currency of the payment
+          example: "EUR"
+        recipient:
+          type: string
+          description: Recipient's name or account holder
+          example: "John Doe"
+        description:
+          type: string
+          description: Brief description of the payment
+          example: "Rent payment"
+      required:
+        - paymentId
+        - amount
+        - currency
+        - recipient
+        - description
+
+    PaymentResponseDTO:
+      type: object
+      properties:
+        paymentId:
+          type: string
+          format: uuid
+          description: Unique identifier for the payment response
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        status:
+          type: string
+          description: Status of the payment (e.g., pending, completed, failed)
+          example: "completed"
+        message:
+          type: string
+          description: Additional message about the payment status
+          example: "Payment processed successfully"
+        transactionId:
+          type: string
+          format: uuid
+          description: Unique identifier for the transaction associated with this payment
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      required:
+        - paymentId
+        - status
+        - message
+        - transactionId
+
+    # Financial Management and Tools DTOs
+    BudgetDTO:
+      type: object
+      properties:
+        budgetId:
+          type: string
+          format: uuid
+          description: Unique identifier for the budget
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        name:
+          type: string
+          description: Name of the budget
+          example: "Monthly Expenses"
+        monthlyIncome:
+          type: number
+          format: double
+          description: Monthly income allocated to this budget
+          example: 5000.00
+        monthlyExpenses:
+          type: object
+          additionalProperties:
+            type: number
+            format: double
+          description: Monthly expenses categorized under this budget
+          example:
+            "rent": 1000.00
+            "groceries": 500.00
+        savingsGoal:
+          type: number
+          format: double
+          description: Target savings amount for this budget
+          example: 1000.00
+        startDate:
+          type: string
+          format: date
+          description: Start date of the budget period
+          example: "2023-01-01"
+        endDate:
+          type: string
+          format: date
+          description: End date of the budget period
+          example: "2023-12-31"
+      required:
+        - budgetId
+        - name
+        - monthlyIncome
+        - startDate
+        - endDate
+
+    SavingsGoalDTO:
+      type: object
+      properties:
+        goalId:
+          type: string
+          format: uuid
+          description: Unique identifier for the savings goal
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        name:
+          type: string
+          description: Name of the savings goal
+          example: "Emergency Fund"
+        targetAmount:
+          type: number
+          format: double
+          description: Target amount for the savings goal
+          example: 10000.00
+        startDate:
+          type: string
+          format: date
+          description: Start date of the savings period
+          example: "2023-01-01"
+        endDate:
+          type: string
+          format: date
+          description: End date of the savings period
+          example: "2023-12-31"
+        progress:
+          type: number
+          format: double
+          description: Current progress towards the target amount (0-1)
+          example: 0.75
+      required:
+        - goalId
+        - name
+        - targetAmount
+        - startDate
+        - endDate
+
+    # Personal Finance Management DTOs
+    ExpenseLogDTO:
+      type: object
+      properties:
+        expenseId:
+          type: string
+          format: uuid
+          description: Unique identifier for the expense log entry
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        amount:
+          type: number
+          format: double
+          description: Amount of the expense
+          example: 50.00
+        category:
+          type: string
+          description: Category of the expense (e.g., food, transportation)
+          example: "groceries"
+        date:
+          type: string
+          format: date
+          description: Date of the expense
+          example: "2023-07-25"
+        description:
+          type: string
+          description: Brief description of the expense
+          example: "Dinner at restaurant"
+      required:
+        - expenseId
+        - amount
+        - category
+        - date
+        - description
+
+    TaxEstimationDTO:
+      type: object
+      properties:
+        taxableIncome:
+          type: number
+          format: double
+          description: Total taxable income
+          example: 50000.00
+        deductions:
+          type: number
+          format: double
+          description: Total deductions (e.g., charitable donations)
+          example: 1000.00
+        taxLiability:
+          type: number
+          format: double
+          description: Estimated tax liability
+          example: 15000.00
+      required:
+        - taxableIncome
+        - deductions
+        - taxLiability
+
+    # Credit and Lending Services DTOs
+    LoanApplicationDTO:
+      type: object
+      properties:
+        applicationId:
+          type: string
+          format: uuid
+          description: Unique identifier for the loan application
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        applicantName:
+          type: string
+          description: Name of the loan applicant
+          example: "John Doe"
+        loanAmount:
+          type: number
+          format: double
+          description: Amount requested for the loan
+          example: 20000.00
+        interestRate:
+          type: number
+          format: double
+          description: Proposed interest rate for the loan
+          example: 0.05
+        term:
+          type: integer
+          description: Term of the loan in months
+          example: 60
+        purpose:
+          type: string
+          description: Purpose of the loan (e.g., home improvement, education)
+          example: "Home improvement"
+      required:
+        - applicationId
+        - applicantName
+        - loanAmount
+        - interestRate
+        - term
+        - purpose
+
+    MortgageCalculationDTO:
+      type: object
+      properties:
+        propertyValue:
+          type: number
+          format: double
+          description: Value of the property
+          example: 300000.00
+        downPayment:
+          type: number
+          format: double
+          description: Down payment amount
+          example: 30000.00
+        interestRate:
+          type: number
+          format: double
+          description: Proposed interest rate for the mortgage
+          example: 0.04
+        term:
+          type: integer
+          description: Term of the mortgage in years
+          example: 30
+        monthlyPayment:
+          type: number
+          format: double
+          description: Estimated monthly mortgage payment
+          example: 1200.00
+      required:
+        - propertyValue
+        - downPayment
+        - interestRate
+        - term
+        - monthlyPayment
+
+    # Utility and Bill Pay Services DTOs
+    BillPaymentDTO:
+      type: object
+      properties:
+        billId:
+          type: string
+          format: uuid
+          description: Unique identifier for the bill payment
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        amount:
+          type: number
+          format: double
+          description: Amount of the bill payment
+          example: 100.00
+        dueDate:
+          type: string
+          format: date
+          description: Due date of the bill
+          example: "2023-08-15"
+        paymentStatus:
+          type: string
+          description: Current status of the bill payment (e.g., pending, completed, failed)
+          example: "pending"
+      required:
+        - billId
+        - amount
+        - dueDate
+        - paymentStatus
+
+    # Shopping and Rewards Programs DTOs
+    RewardPointsDTO:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+          description: Unique identifier for the user
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        earnedPoints:
+          type: integer
+          description: Number of points earned by the user
+          example: 5000
+        redeemedPoints:
+          type: integer
+          description: Number of points redeemed by the user
+          example: 2000
+        totalPoints:
+          type: integer
+          description: Total number of points available to the user
+          example: 3000
+      required:
+        - userId
+        - earnedPoints
+        - redeemedPoints
+        - totalPoints
+
+    # Security and Fraud Protection DTOs
+    IdentityVerificationDTO:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+          description: Unique identifier for the user
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        firstName:
+          type: string
+          description: First name of the user
+          example: "John"
+        lastName:
+          type: string
+          description: Last name of the user
+          example: "Doe"
+        email:
+          type: string
+          format: email
+          description: Email address of the user
+          example: "john.doe@example.com"
+        phoneNumber:
+          type: string
+          pattern: "^\\+\\d{1,2}\\s?\\(?\\d{3}\\)?[-.]? \\d{3}[-.]? \\d{4}$"
+          description: Phone number of the user
+          example: "+1 555-123-4567"
+      required:
+        - userId
+        - firstName
+        - lastName
+        - email
+        - phoneNumber
+
+    SecurityAlertDTO:
+      type: object
+      properties:
+        alertId:
+          type: string
+          format: uuid
+          description: Unique identifier for the security alert
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        type:
+          type: string
+          description: Type of security alert (e.g., suspicious login, account compromise)
+          example: "suspicious_login"
+        description:
+          type: string
+          description: Detailed description of the security alert
+          example: "Multiple login attempts from an unknown location"
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp when the security alert was raised
+          example: "2023-07-25T14:30:00Z"
+      required:
+        - alertId
+        - type
+        - description
+        - timestamp
+
+    # Accessibility and Inclusion DTOs
+    FinancialLiteracyResourceDTO:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          format: uuid
+          description: Unique identifier for the financial literacy resource
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        title:
+          type: string
+          description: Title of the financial literacy resource
+          example: "Understanding Credit Scores"
+        url:
+          type: string
+          format: uri
+          description: URL where the resource can be accessed
+          example: "https://example.com/financial-literacy/credit-scores"
+        description:
+          type: string
+          description: Brief description of the financial literacy resource
+          example: "This resource explains how credit scores work and their impact on loan interest rates."
+      required:
+        - resourceId
+        - title
+        - url
+        - description
